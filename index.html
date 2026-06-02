@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Unit Converter</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100">
+
+  <!-- Navbar -->
+  <nav class="bg-blue-600 text-white p-4">
+    <div class="flex space-x-6 justify-center text-lg font-semibold">
+      <button class="tab-btn" data-tab="weight">Weight</button>
+      <button class="tab-btn" data-tab="distance">Distance</button>
+      <button class="tab-btn" data-tab="temperature">Temperature</button>
+    </div>
+  </nav>
+
+  <!-- Content Container -->
+  <div class="max-w-2xl mx-auto mt-10">
+
+    <!-- Weight Tab -->
+    <div id="weight" class="tab-content hidden">
+      <h2 class="text-2xl font-bold mb-4">Weight Conversion</h2>
+
+      <div class="bg-white p-6 rounded shadow">
+        <h3 class="font-semibold mb-2">Pounds ⇄ Kilograms</h3>
+
+        <label class="block mb-1">Enter value(s):</label>
+        <input id="weightInput" class="w-full p-2 border rounded mb-3" placeholder="e.g., 10 or 1,5,10">
+
+        <button onclick="convertWeight('lb','kg')" class="bg-blue-600 text-white px-4 py-2 rounded mr-2">lb → kg</button>
+        <button onclick="convertWeight('kg','lb')" class="bg-blue-600 text-white px-4 py-2 rounded">kg → lb</button>
+
+        <p id="weightResult" class="mt-4 font-semibold"></p>
+      </div>
+    </div>
+
+    <!-- Distance Tab -->
+    <div id="distance" class="tab-content hidden">
+      <h2 class="text-2xl font-bold mb-4">Distance Conversion</h2>
+
+      <div class="bg-white p-6 rounded shadow">
+        <h3 class="font-semibold mb-2">Miles ⇄ Kilometres</h3>
+
+        <label class="block mb-1">Enter value(s):</label>
+        <input id="distanceInput" class="w-full p-2 border rounded mb-3" placeholder="e.g., 2 or 1,5,10">
+
+        <button onclick="convertDistance('miles','km')" class="bg-blue-600 text-white px-4 py-2 rounded mr-2">Miles → Km</button>
+        <button onclick="convertDistance('km','miles')" class="bg-blue-600 text-white px-4 py-2 rounded">Km → Miles</button>
+
+        <p id="distanceResult" class="mt-4 font-semibold"></p>
+      </div>
+    </div>
+
+    <!-- Temperature Tab -->
+    <div id="temperature" class="tab-content hidden">
+      <h2 class="text-2xl font-bold mb-4">Temperature Conversion</h2>
+
+      <div class="bg-white p-6 rounded shadow">
+        <h3 class="font-semibold mb-2">Celsius ⇄ Fahrenheit</h3>
+
+        <label class="block mb-1">Enter value(s):</label>
+        <input id="tempInput" class="w-full p-2 border rounded mb-3" placeholder="e.g., 32 or 0,20,100">
+
+        <button onclick="convertTemp('c','f')" class="bg-blue-600 text-white px-4 py-2 rounded mr-2">°C → °F</button>
+        <button onclick="convertTemp('f','c')" class="bg-blue-600 text-white px-4 py-2 rounded">°F → °C</button>
+
+        <p id="tempResult" class="mt-4 font-semibold"></p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- JavaScript Modules -->
+  <script type="module" src="./assets/js/app.js"></script>
+
+</body>
+</html>

@@ -75,38 +75,48 @@
   <!-- JavaScript Modules -->
   <script>
 
+    //weight Convert
+    function convertWeight(firstUnit,secondUnit) {
+      var valueToConvert = String(document.getElementById("weightInput").value);
+      var valueArray = valueToConvert.split(",");
+      //"weightResult"
+        
+    }
+
+    //distance Convert
+    function convertDistance(firstUnit,secondUnit) {
+      var valueToConvert = String(document.getElementById("distanceInput").value);
+      var valueArray = valueToConvert.split(",");
+      
+      //"distanceResult"
+        
+    }
+
     //Temp Convert
     function convertTemp(firstUnit,secondUnit) {
       var valueToConvert = String(document.getElementById("tempInput").value);
       var valueArray = valueToConvert.split(",");
-      var finalString = ""
-      for(var i=0;i<valueArray.length;i++) {
-        var nextValue = convert(firstUnit,secondUnit,Number(valueArray[i]))
-        if(i!=0) {
-          finalString += ", "
-        }
-        finalString += String(nextValue)
-        }
-      if(firstUnit=="c") {
+      var finalValues = [];
+      if(firstUnit=="c" && secondUnit=="f") {
+        finalValues = valueArray.map((i) => Number(i)*(9/5) + 32);
+        var finalString = convertToString(finalValues);
         document.getElementById("tempResult").innerHTML = `The value(s) are ${finalString} degrees Fahrenheit.`;
       } else {
+        finalValues = valueArray.map((i) => (Number(i) - 32)/(9/5));
+        var finalString = convertToString(finalValues);
         document.getElementById("tempResult").innerHTML = `The value(s) are ${finalString} degrees Celsius.`;
-      }
-        
+      } 
     }
-    
-    //Takes in the two units and convers value based on it.
-    function convert(firstUnit,secondUnit,value) {
-      if(isNaN(value)) {
-        return "NaN";
-      } else if(firstUnit=="c" && secondUnit=="f") {
-        var convertedValue = value*(9/5) + 32;
-        return convertedValue.toFixed(1);
-      } else if(firstUnit=="f" && secondUnit=="c") {
-        var convertedValue = (value - 32)/(9/5);
-        return convertedValue.toFixed(1);
-        
+
+    function convertToString(array) {
+      var finalString = "";
+      for(var i=0;i<array.length;i++) {
+        if(i!=0) {
+          finalString += ", ";
+        }
+        finalString += String(array[i].toFixed(1));
       }
+      return finalString;
     }
   </script>
 </body>

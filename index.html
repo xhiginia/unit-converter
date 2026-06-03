@@ -55,7 +55,7 @@
     </div>
 
     <!-- Temperature Tab -->
-    <div id="temperature" class="tab-content hidden">
+    <div id="temperature" class="">
       <h2 class="text-2xl font-bold mb-4">Temperature Conversion</h2>
 
       <div class="bg-white p-6 rounded shadow">
@@ -72,9 +72,42 @@
     </div>
 
   </div>
-
   <!-- JavaScript Modules -->
-  <script type="module" src="./assets/js/app.js"></script>
+  <script>
 
+    //Temp Convert
+    function convertTemp(firstUnit,secondUnit) {
+      var valueToConvert = String(document.getElementById("tempInput").value);
+      var valueArray = valueToConvert.split(",");
+      var finalString = ""
+      for(var i=0;i<valueArray.length;i++) {
+        var nextValue = convert(firstUnit,secondUnit,Number(valueArray[i]))
+        if(i!=0) {
+          finalString += ", "
+        }
+        finalString += String(nextValue)
+        }
+      if(firstUnit=="c") {
+        document.getElementById("tempResult").innerHTML = `The value(s) are ${finalString} degrees Fahrenheit.`;
+      } else {
+        document.getElementById("tempResult").innerHTML = `The value(s) are ${finalString} degrees Celsius.`;
+      }
+        
+    }
+    
+    //Takes in the two units and convers value based on it.
+    function convert(firstUnit,secondUnit,value) {
+      if(isNaN(value)) {
+        return "NaN";
+      } else if(firstUnit=="c" && secondUnit=="f") {
+        var convertedValue = value*(9/5) + 32;
+        return convertedValue.toFixed(1);
+      } else if(firstUnit=="f" && secondUnit=="c") {
+        var convertedValue = (value - 32)/(9/5);
+        return convertedValue.toFixed(1);
+        
+      }
+    }
+  </script>
 </body>
 </html>

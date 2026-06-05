@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Unit Converter</title>
@@ -21,7 +22,7 @@
   <div class="max-w-2xl mx-auto mt-10">
 
     <!-- Weight Tab -->
-    <div id="weight" class="">
+    <div id="weight" class="tab-content">
       <h2 class="text-2xl font-bold mb-4">Weight Conversion</h2>
 
       <div class="bg-white p-6 rounded shadow">
@@ -30,7 +31,8 @@
         <label class="block mb-1">Enter value(s):</label>
         <input id="weightInput" class="w-full p-2 border rounded mb-3" placeholder="e.g., 10 or 1,5,10">
 
-        <button onclick="convertWeight('lb','kg')" class="bg-blue-600 text-white px-4 py-2 rounded mr-2">lb → kg</button>
+        <button onclick="convertWeight('lb','kg')" class="bg-blue-600 text-white px-4 py-2 rounded mr-2">lb →
+          kg</button>
         <button onclick="convertWeight('kg','lb')" class="bg-blue-600 text-white px-4 py-2 rounded">kg → lb</button>
 
         <p id="weightResult" class="mt-4 font-semibold"></p>
@@ -47,8 +49,10 @@
         <label class="block mb-1">Enter value(s):</label>
         <input id="distanceInput" class="w-full p-2 border rounded mb-3" placeholder="e.g., 2 or 1,5,10">
 
-        <button onclick="convertDistance('miles','km')" class="bg-blue-600 text-white px-4 py-2 rounded mr-2">Miles → Km</button>
-        <button onclick="convertDistance('km','miles')" class="bg-blue-600 text-white px-4 py-2 rounded">Km → Miles</button>
+        <button onclick="convertDistance('miles','km')" class="bg-blue-600 text-white px-4 py-2 rounded mr-2">Miles →
+          Km</button>
+        <button onclick="convertDistance('km','miles')" class="bg-blue-600 text-white px-4 py-2 rounded">Km →
+          Miles</button>
 
         <p id="distanceResult" class="mt-4 font-semibold"></p>
       </div>
@@ -72,67 +76,10 @@
     </div>
 
   </div>
+
   <!-- JavaScript Modules -->
-  <script>
+  <script type="module" src="./assets/apps.js"></script>
 
-    //weight Convert
-    function convertWeight(firstUnit,secondUnit) {
-      var valueToConvert = String(document.getElementById("weightInput").value);
-      var valueArray = valueToConvert.split(",");
-      var finalValues = [];
-      if(firstUnit=="lb" && secondUnit=="kg") {
-        finalValues = valueArray.map((i) => Number(i)/2.204622);
-        var finalString = convertToString(finalValues);
-        document.getElementById("weightResult").innerHTML = `The value(s) are ${finalString} kilogram(s).`;
-      } else {
-        finalValues = valueArray.map((i) => Number(i)*2.204622);
-        var finalString = convertToString(finalValues);
-        document.getElementById("weightResult").innerHTML = `The value(s) are ${finalString} pounds(s).`;
-      } 
-    }
-
-    //distance Convert
-    function convertDistance(firstUnit,secondUnit) {
-      var valueToConvert = String(document.getElementById("distanceInput").value);
-      var valueArray = valueToConvert.split(",");
-      var finalValues = [];
-      if(firstUnit=="km" && secondUnit=="miles") {
-        finalValues = valueArray.map((i) => Number(i)/1.609344);
-        var finalString = convertToString(finalValues);
-        document.getElementById("distanceResult").innerHTML = `The value(s) are ${finalString} mile(s).`;
-      } else {
-        finalValues = valueArray.map((i) => Number(i)*1.609344);
-        var finalString = convertToString(finalValues);
-        document.getElementById("distanceResult").innerHTML = `The value(s) are ${finalString} kilometer(s).`;
-      } 
-    }
-
-    //Temp Convert
-    function convertTemp(firstUnit,secondUnit) {
-      var valueToConvert = String(document.getElementById("tempInput").value);
-      var valueArray = valueToConvert.split(",");
-      var finalValues = [];
-      if(firstUnit=="c" && secondUnit=="f") {
-        finalValues = valueArray.map((i) => Number(i)*(9/5) + 32);
-        var finalString = convertToString(finalValues);
-        document.getElementById("tempResult").innerHTML = `The value(s) are ${finalString} degrees Fahrenheit.`;
-      } else {
-        finalValues = valueArray.map((i) => (Number(i) - 32)/(9/5));
-        var finalString = convertToString(finalValues);
-        document.getElementById("tempResult").innerHTML = `The value(s) are ${finalString} degrees Celsius.`;
-      } 
-    }
-
-    function convertToString(array) {
-      var finalString = "";
-      for(var i=0;i<array.length;i++) {
-        if(i!=0) {
-          finalString += ", ";
-        }
-        finalString += String(array[i].toFixed(1));
-      }
-      return finalString;
-    }
-  </script>
 </body>
+
 </html>
